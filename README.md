@@ -1,13 +1,13 @@
-# GitHub Codespaces ♥️ Flask
+Зачем выполнять ```docker compose stop db```?
 
-Welcome to your shiny new Codespace running Flask! We've got everything fired up and running for you to explore Flask.
+Эта команда короче останавливает контейнер с бд. После её выполнения при попытке открыть сайт выйдет "Error to con to DB" (или другую ошибку не знаю), потому что сайт не может подключиться к остановленной бд.
 
-You've got a blank canvas to work on from a git perspective as well. There's a single initial commit with the what you're seeing right now - where you go from here is up to you!
+И зачем это:
 
-Everything you do here is contained within this one codespace. There is no repository on GitHub yet. If and when you’re ready you can click "Publish Branch" and we’ll create your repository and push up your project. If you were just exploring then and have no further need for this code then you can simply delete your codespace and it's gone forever.
+*Разделение ответственности* - сервисы работают независимо
 
-To run this application:
+*Зависимость сервисов* - веб-приложение зависит от бд
 
-```
-flask --debug run
-```
+*Сетевое взаимодействие* - контейнеры общаются по имени сервиса (db), а не по IP
+
+*Устойчивость архитектуры* - можно управлять сервисами по отдельности
